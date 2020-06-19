@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="sga_incentive_push" resource="default" engine="innodb" comment="INCENTIVE push">
+        <column xsi:type="int" name="push_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="tinyint" name="is_active" unsigned="true" nullable="false" identity="false" default="0" comment="Is Active" />
+        <column xsi:type="varchar" name="name" length="255" nullable="false" comment="Name" />
+        <column xsi:type="varchar" name="positions" length="255" nullable="false" comment="Positions" />
+        <column xsi:type="varchar" name="size" length="255" nullable="false" comment="Size" />
+        <column xsi:type="int" name="block_cms_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Block CMS" />
+        <column xsi:type="text" name="html" nullable="false" comment="Html" />
+        <column xsi:type="tinyint" name="all_categories" unsigned="true" nullable="false" identity="false" default="0" comment="All Categories" />
+        <column xsi:type="varchar" name="category_ids" length="255" nullable="true" default="" comment="Category Ids" />
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
+        <column xsi:type="timestamp" name="updated_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="push_id"/>
+        </constraint>
+    </table>
+
+    <table name="sga_incentive_push_store" resource="default" engine="innodb" comment="INCENTIVE push store">
+        <column xsi:type="int" name="push_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Push Id"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Store Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="push_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FK_SGA_INCENTIVE_PUSH_STORE_STORE_ID_STORE_ID"
+                    table="sga_incentive_push_store" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="FK_SGA_INCENTIVE_PUSH_STORE_PUSH_ID_PUSH_ID"
+                    table="sga_incentive_push_store" column="push_id" referenceTable="sga_incentive_push"
+                    referenceColumn="push_id" onDelete="CASCADE"/>
+    </table>
+</schema>

@@ -1,0 +1,31 @@
+{
+    "sga_incentive_push": {
+        "column": {
+            "is_active": true,
+            "name": true,
+            "positions": true,
+            "size": true,
+            "block_cms_id": true,
+            "html": true,
+            "category_ids": true,
+            "all_categories": true,
+            "created_at": true,
+            "updated_at": true,
+            "push_id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "sga_incentive_push_store": {
+        "column": {
+            "push_id": true,
+            "store_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SGA_INCENTIVE_PUSH_STORE_STORE_ID_STORE_STORE_ID": true,
+            "SGA_INCENTIVE_PUSH_STORE_PUSH_ID_SGA_INCENTIVE_PUSH_PUSH_ID": true
+        }
+    }
+}

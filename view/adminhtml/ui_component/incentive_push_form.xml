@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">incentive_push_form.incentive_push_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save" class="Sga\Incentive\Block\Adminhtml\Push\Edit\SaveButton"/>
+            <button name="delete" class="Sga\Incentive\Block\Adminhtml\Push\Edit\DeleteButton"/>
+            <button name="back" class="Sga\Incentive\Block\Adminhtml\Push\Edit\BackButton"/>
+        </buttons>
+        <namespace>incentive_push_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>incentive_push_form.incentive_push_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="incentive_push_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="incentive/push/save"/>
+        </settings>
+        <dataProvider class="Sga\Incentive\Model\Push\DataProvider" name="incentive_push_form_data_source">
+            <settings>
+                <requestFieldName>push_id</requestFieldName>
+                <primaryFieldName>push_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="general">
+        <settings>
+            <label>General</label>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+        </settings>
+
+        <field name="push_id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">push</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>push_id</dataScope>
+            </settings>
+        </field>
+
+        <field name="is_active" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">push</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Is Active</label>
+                <dataScope>is_active</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+
+        <field name="positions" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">push</item>
+                </item>
+            </argument>
+            <settings>
+                <validation><rule name="required-entry" xsi:type="boolean">true</rule></validation>
+                <dataType>text</dataType>
+                <label translate="true">Positions</label>
+                <dataScope>positions</dataScope>
+            </settings>
+        </field>
+
+        <field name="name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">push</item>
+                </item>
+            </argument>
+            <settings>
+                <validation><rule name="required-entry" xsi:type="boolean">true</rule></validation>
+                <dataType>text</dataType>
+                <label translate="true">Name</label>
+                <dataScope>name</dataScope>
+            </settings>
+        </field>
+
+        <field name="size" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">push</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Size</label>
+                <dataScope>size</dataScope>
+                <validation><rule name="required-entry" xsi:type="boolean">true</rule></validation>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Sga\Incentive\Model\Source\Size"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="block_cms_id" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">push</item>
+                    <item name="default" xsi:type="string">0</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Block CMS</label>
+                <dataScope>block_cms_id</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Sga\Incentive\Model\Source\Cms\Block"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+
+        <field name="html" template="ui/form/field" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="wysiwygConfigData" xsi:type="array">
+                        <item name="height" xsi:type="string">200px</item>
+                    </item>
+                    <item name="source" xsi:type="string">push</item>
+                </item>
+            </argument>
+            <settings>
+
+                <label translate="true">Html</label>
+                <dataScope>html</dataScope>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+
+        <field name="all_categories" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">push</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">All Categories</label>
+                <dataScope>all_categories</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+
+        <field name="category_ids">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Catalog\Ui\Component\Product\Form\Categories\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Categories</item>
+                    <item name="componentType" xsi:type="string">field</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Catalog/js/components/new-category</item>
+                    <item name="elementTmpl" xsi:type="string">ui/grid/filters/elements/ui-select</item>
+                    <item name="dataScope" xsi:type="string">category_ids</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="showCheckbox" xsi:type="boolean">false</item>
+                    <item name="disableLabel" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">true</item>
+                    <item name="levelsVisibility" xsi:type="number">1</item>
+                    <item name="listens" xsi:type="array">
+                        <item name="${ $.namespace }.${ $.namespace }:responseData" xsi:type="string">setParsed</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+
+        <field name="storeviews" formElement="multiselect" class="Magento\Store\Ui\Component\Form\Field\StoreView">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">push</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <label translate="true">Store View</label>
+                <dataScope>store_id</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Sga\Incentive\Ui\Component\Listing\Column\Stores"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+    </fieldset>
+</form>

@@ -1,0 +1,40 @@
+<?php
+/* @var $block \Sga\Incentive\Block\Push */
+$pushs = $block->getPushs();
+
+$config = [
+    'elements' => [
+        'pushs' => '#incentive_pushs .push',
+        'container_dest' => '.products .product-items',
+        'container_list' => '.products .product-items .item',
+    ],
+    'item' => [
+        'htmlTag' => 'li',
+        'classes' => 'items'
+    ]
+];
+?>
+<?php if (count($pushs) > 0): ?>
+<div id="incentive_pushs" style="display:none">
+    <?php krsort($pushs) ?>
+    <?php foreach ($pushs as $position => $list) : ?>
+        <?php foreach ($list as $push) : ?>
+            <div class="push" data-position="<?= $position ?>">
+            <?php if ((int)$push->getBlockCmsId() > 0) {
+                echo $block->getLayout()
+                    ->createBlock('Magento\Cms\Block\Block')
+                    ->setBlockId($push->getBlockCmsId())
+                    ->toHtml();
+            } else {
+                echo $block->getCmsFilter()->filter($push->getHtml());
+            }
+            ?>
+            </div>
+        <?php endforeach ?>
+    <?php endforeach ?>
+
+    <script type="text/x-magento-init">
+    {"#incentive_pushs": {"incentive-pushs": <?= $block->getJsonSerializer()->serialize($config) ?>}}
+    </script>
+</div>
+<?php endif ?>

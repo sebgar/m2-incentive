@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Sga\Incentive\Api\Data\PushInterface" type="Sga\Incentive\Model\Push" />
+    <preference for="Sga\Incentive\Api\PushRepositoryInterface" type="Sga\Incentive\Model\PushRepository" />
+
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Sga\Incentive\Api\Data\PushInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">sga_incentive_push</item>
+                    <item name="identifierField" xsi:type="string">push_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="incentive_push_listing_data_source" xsi:type="string">Sga\Incentive\Model\ResourceModel\Push\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Sga\Incentive\Model\ResourceModel\Push\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sga_incentive_push</argument>
+            <argument name="eventPrefix" xsi:type="string">incentive_push_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">incentive_push_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Sga\Incentive\Model\ResourceModel\Push</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Sga\Incentive\Api\Data\PushInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="storeReader" xsi:type="string">Sga\Incentive\Model\ResourceModel\Push\Relation\Store\ReadHandler</item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="storeCreator" xsi:type="string">Sga\Incentive\Model\ResourceModel\Push\Relation\Store\SaveHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="storeUpdater" xsi:type="string">Sga\Incentive\Model\ResourceModel\Push\Relation\Store\SaveHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

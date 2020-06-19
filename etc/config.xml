@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <sga_incentive>
+            <size>
+                <w_25>
+                    <label>25%</label>
+                </w_25>
+                <w_50>
+                    <label>50%</label>
+                </w_50>
+                <w_100>
+                    <label>100%</label>
+                </w_100>
+            </size>
+        </sga_incentive>
+    </default>
+</config>
