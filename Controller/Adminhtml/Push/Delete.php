@@ -3,7 +3,6 @@ namespace Sga\Incentive\Controller\Adminhtml\Push;
 
 use Magento\Framework\App\Action\HttpPostActionInterface;
 use Sga\Incentive\Controller\Adminhtml\Push as ParentClass;
-use Sga\Incentive\Model\Push as Model;
 
 class Delete extends ParentClass implements HttpPostActionInterface
 {
