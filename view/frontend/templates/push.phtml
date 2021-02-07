@@ -10,7 +10,7 @@ $config = [
     ],
     'item' => [
         'htmlTag' => 'li',
-        'classes' => 'items'
+        'classes' => 'item product product-item'
     ]
 ];
 ?>
@@ -19,7 +19,15 @@ $config = [
     <?php krsort($pushs) ?>
     <?php foreach ($pushs as $position => $list) : ?>
         <?php foreach ($list as $push) : ?>
-            <div class="push" data-position="<?= $position ?>">
+            <?php
+            $style = '';
+            switch ($push->getSize()) {
+                case 'w_25': $style = "width: calc((100% - 6%)/4);"; break;
+                case 'w_50': $style = "width: calc((100% - 6%)/2);"; break;
+                case 'w_100': $style = "width: 100%;"; break;
+            }
+            ?>
+            <div class="push" data-position="<?= $position ?>" data-style="<?= $style ?>">
             <?php if ((int)$push->getBlockCmsId() > 0) {
                 echo $block->getLayout()
                     ->createBlock('Magento\Cms\Block\Block')

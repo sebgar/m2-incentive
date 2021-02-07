@@ -75,7 +75,7 @@ class Push extends Template
         $start = ($page - 1) * $limit;
         $end = $start + $limit;
         $positions = [];
-        for ($i = $start; $i < $end; $i++) {
+        for ($i = $start + 1; $i <= $end; $i++) {
             $positions[] = $i;
         }
 

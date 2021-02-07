@@ -12,10 +12,11 @@ define([
             $(this.options.elements.pushs).each(function (index, element) {
                 element = $(element);
                 var position = parseInt(element.data('position'));
+                var style = element.data('style');
                 if (position <= max) {
                     $(_self.options.elements.container_list).each(function (index, item) {
                         if (index + 1 === position) {
-                            $(item).before('<' + _self.options.item.htmlTag +' class="'+_self.options.item.classes+'">'+element.html()+'</'+ _self.options.item.htmlTag +'>');
+                            $(item).before('<' + _self.options.item.htmlTag +' class="'+_self.options.item.classes+'" style="'+style+'">'+element.html()+'</'+ _self.options.item.htmlTag +'>');
                         }
                     });
                 }
