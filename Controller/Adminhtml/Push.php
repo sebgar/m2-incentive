@@ -9,6 +9,7 @@ use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Page;
 use Magento\Backend\Model\View\Result\ForwardFactory;
 use Magento\Ui\Component\MassAction\Filter as MassActionFilter;
+use Magento\Framework\App\Cache\TypeListInterface as CacheTypeList;
 use Sga\Incentive\Model\PushFactory as ModelFactory;
 use Sga\Incentive\Model\ResourceModel\Push\CollectionFactory;
 use Sga\Incentive\Api\PushRepositoryInterface as ModelRepository;
@@ -25,6 +26,7 @@ abstract class Push extends Action
     protected $_collectionFactory;
     protected $_massActionFilter;
     protected $_dataPersistor;
+    protected $_cacheTypeList;
 
     public function __construct(
         Context $context,
@@ -35,7 +37,8 @@ abstract class Push extends Action
         ModelRepository $modelRepository,
         CollectionFactory $collectionFactory,
         MassActionFilter $massActionFilter,
-        DataPersistorInterface $dataPersistor
+        DataPersistorInterface $dataPersistor,
+        CacheTypeList $cacheTypeList
     ) {
         $this->_resultPageFactory = $resultPageFactory;
         $this->_resultForwardFactory = $resultForwardFactory;
@@ -45,6 +48,7 @@ abstract class Push extends Action
         $this->_collectionFactory = $collectionFactory;
         $this->_massActionFilter = $massActionFilter;
         $this->_dataPersistor = $dataPersistor;
+        $this->_cacheTypeList = $cacheTypeList;
 
         parent::__construct($context);
     }

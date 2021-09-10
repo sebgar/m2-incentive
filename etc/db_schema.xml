@@ -10,7 +10,9 @@
         <column xsi:type="int" name="block_cms_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Block CMS" />
         <column xsi:type="text" name="html" nullable="false" comment="Html" />
         <column xsi:type="tinyint" name="all_categories" unsigned="true" nullable="false" identity="false" default="0" comment="All Categories" />
-        <column xsi:type="varchar" name="category_ids" length="255" nullable="true" default="" comment="Category Ids" />
+        <column xsi:type="text" name="category_ids" nullable="true" comment="Category Ids" />
+        <column xsi:type="text" name="category_ids_excluded" nullable="true" comment="Category Ids Excluded" />
+        <column xsi:type="tinyint" name="repeat" unsigned="true" nullable="false" identity="false" default="1" comment="Repeat" />
         <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At" />
         <column xsi:type="timestamp" name="updated_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At" />
         <constraint xsi:type="primary" referenceId="PRIMARY">

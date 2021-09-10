@@ -50,6 +50,9 @@ class Push extends AbstractDb
         if (is_string($object->getCategoryIds())) {
             $object->setCategoryIds(explode(',', $object->getCategoryIds()));
         }
+        if (is_string($object->getCategoryIdsExcluded())) {
+            $object->setCategoryIdsExcluded(explode(',', $object->getCategoryIdsExcluded()));
+        }
     }
 
     public function save(AbstractModel $object)
@@ -68,6 +71,9 @@ class Push extends AbstractDb
     {
         if (is_array($object->getCategoryIds())) {
             $object->setCategoryIds(implode(',', $object->getCategoryIds()));
+        }
+        if (is_array($object->getCategoryIdsExcluded())) {
+            $object->setCategoryIdsExcluded(implode(',', $object->getCategoryIdsExcluded()));
         }
     }
 

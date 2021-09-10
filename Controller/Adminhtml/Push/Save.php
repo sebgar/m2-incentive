@@ -38,6 +38,10 @@ class Save extends ParentClass implements HttpPostActionInterface
                 $this->_modelRepository->save($model);
                 $this->messageManager->addSuccessMessage(__('You saved the push.'));
                 $this->_dataPersistor->clear('incentive_push');
+
+                $this->_cacheTypeList->invalidate(\Magento\PageCache\Model\Cache\Type::TYPE_IDENTIFIER);
+                $this->_cacheTypeList->invalidate(\Magento\Framework\App\Cache\Type\Block::TYPE_IDENTIFIER);
+
                 return $this->processReturn($model, $data, $resultRedirect);
             } catch (LocalizedException $e) {
                 $this->messageManager->addErrorMessage($e->getMessage());

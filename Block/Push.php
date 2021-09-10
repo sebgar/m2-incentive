@@ -48,38 +48,16 @@ class Push extends Template
 
         $category = $this->_registry->registry('current_category');
         if ($category instanceof \Magento\Catalog\Model\Category && (int)$category->getId() > 0) {
+            $page = $this->_toolbar->getCurrentPage();
+
             $list = $this->_pushCollectionFactory->create()
                 ->addIsActiveFilter(true)
                 ->addCategoriesFilter([$category->getId()])
+                ->addCategoriesExcludedFilter([$category->getId()])
                 ->addStoreFilter($this->_storeManager->getStore())
-                ->addPositionsFilter($this->_getPositions())
-                ->getByPosition();
+                ->getByPosition($page);
         }
         return $list;
-    }
-
-    protected function _getPositions()
-    {
-        $page = $this->_toolbar->getCurrentPage();
-        $limit = $this->_toolbar->getLimit();
-        if ($limit === null) {
-            $mode = $this->_toolbar->getMode();
-            if ($mode === null) {
-                $mode = $this->_helperProductList->getDefaultViewMode();
-            }
-
-            $limits = $this->_helperProductList->getAvailableLimit($mode);
-            $limit = array_shift($limits);
-        }
-
-        $start = ($page - 1) * $limit;
-        $end = $start + $limit;
-        $positions = [];
-        for ($i = $start + 1; $i <= $end; $i++) {
-            $positions[] = $i;
-        }
-
-        return $positions;
     }
 
     public function getCmsFilter()

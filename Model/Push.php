@@ -102,6 +102,16 @@ class Push extends AbstractModel implements IdentityInterface, ModelInterface
         return $this->setData(self::CATEGORY_IDS, $value);
     }
 
+    public function getCategoryIdsExcluded()
+    {
+        return $this->getData(self::CATEGORY_IDS_EXCLUDED);
+    }
+
+    public function setCategoryIdsExcluded($value)
+    {
+        return $this->setData(self::CATEGORY_IDS_EXCLUDED, $value);
+    }
+
     public function getAllCategories()
     {
         return $this->getData(self::ALL_CATEGORIES);
@@ -110,6 +120,16 @@ class Push extends AbstractModel implements IdentityInterface, ModelInterface
     public function setAllCategories($value)
     {
         return $this->setData(self::ALL_CATEGORIES, $value);
+    }
+
+    public function getRepeat()
+    {
+        return $this->getData(self::REPEAT);
+    }
+
+    public function setRepeat($value)
+    {
+        return $this->setData(self::REPEAT, $value);
     }
 
     public function getCreatedAt()

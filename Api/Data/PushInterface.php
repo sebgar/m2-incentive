@@ -11,7 +11,9 @@ interface PushInterface
     const BLOCK_CMS_ID = 'block_cms_id';
     const HTML = 'html';
     const CATEGORY_IDS = 'category_ids';
+    const CATEGORY_IDS_EXCLUDED = 'category_ids_excluded';
     const ALL_CATEGORIES = 'all_categories';
+    const REPEAT = 'repeat';
     const CREATED_AT = 'created_at';
     const UPDATED_AT = 'updated_at';
 
@@ -29,7 +31,7 @@ interface PushInterface
      * @return PushInterface
      */
     public function setPushId($id);
-    
+
     /**
      * Get is_active
      *
@@ -44,7 +46,7 @@ interface PushInterface
      * @return PushInterface
      */
     public function setIsActive($value);
-    
+
     /**
      * Get name
      *
@@ -59,7 +61,7 @@ interface PushInterface
      * @return PushInterface
      */
     public function setName($value);
-    
+
     /**
      * Get positions
      *
@@ -74,7 +76,7 @@ interface PushInterface
      * @return PushInterface
      */
     public function setPositions($value);
-    
+
     /**
      * Get size
      *
@@ -89,7 +91,7 @@ interface PushInterface
      * @return PushInterface
      */
     public function setSize($value);
-    
+
     /**
      * Get block_cms_id
      *
@@ -104,7 +106,7 @@ interface PushInterface
      * @return PushInterface
      */
     public function setBlockCmsId($value);
-    
+
     /**
      * Get html
      *
@@ -119,7 +121,7 @@ interface PushInterface
      * @return PushInterface
      */
     public function setHtml($value);
-    
+
     /**
      * Get category_ids
      *
@@ -134,7 +136,22 @@ interface PushInterface
      * @return PushInterface
      */
     public function setCategoryIds($value);
-    
+
+    /**
+     * Get category_ids_excluded
+     *
+     * @return string|null
+     */
+    public function getCategoryIdsExcluded();
+
+    /**
+     * Set category_ids_excluded
+     *
+     * @param string $value
+     * @return PushInterface
+     */
+    public function setCategoryIdsExcluded($value);
+
     /**
      * Get all_categories
      *
@@ -149,7 +166,22 @@ interface PushInterface
      * @return PushInterface
      */
     public function setAllCategories($value);
-    
+
+    /**
+     * Get repeat
+     *
+     * @return int|null
+     */
+    public function getRepeat();
+
+    /**
+     * Set repeat
+     *
+     * @param int $value
+     * @return PushInterface
+     */
+    public function setRepeat($value);
+
     /**
      * Get created_at
      *
@@ -164,7 +196,7 @@ interface PushInterface
      * @return PushInterface
      */
     public function setCreatedAt($value);
-    
+
     /**
      * Get updated_at
      *
@@ -179,5 +211,5 @@ interface PushInterface
      * @return PushInterface
      */
     public function setUpdatedAt($value);
-    
+
 }

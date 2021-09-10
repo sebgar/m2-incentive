@@ -8,7 +8,9 @@
             "block_cms_id": true,
             "html": true,
             "category_ids": true,
+            "category_ids_excluded": true,
             "all_categories": true,
+            "repeat": true,
             "created_at": true,
             "updated_at": true,
             "push_id": true

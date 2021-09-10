@@ -58,13 +58,10 @@ class Collection extends AbstractCollection
         return $this;
     }
 
-    public function addPositionsFilter(array $positions)
+    public function addCategoriesExcludedFilter(array $categoryIds)
     {
-        $this->_positionsFilter = $positions;
-
-        $expr = [];
-        foreach ($positions as $position) {
-            $expr[] = 'FIND_IN_SET('.$position.', positions)';
+        foreach ($categoryIds as $categoryId) {
+            $expr[] = 'NOT FIND_IN_SET('.$categoryId.', category_ids_excluded)';
         }
 
         if (count($expr) > 0) {
@@ -163,17 +160,13 @@ class Collection extends AbstractCollection
         parent::_renderFiltersBefore();
     }
 
-    public function getByPosition()
+    public function getByPosition($page)
     {
         $lines = [];
         foreach ($this->getItems() as $item) {
-            $positions = is_array($item->getPositions()) ? $item->getPositions() : explode(',', $item->getPositions());
-            foreach ($positions as $position) {
-                if (is_array($this->_positionsFilter)) {
-                    if (in_array((int)$position, $this->_positionsFilter)) {
-                        $lines[(int)$position][] = $item;
-                    }
-                } else {
+            if ( (bool)$item->getRepeat() || (!(bool)$item->getRepeat() && $page === 1)) {
+                $positions = is_array($item->getPositions()) ? $item->getPositions() : explode(',', $item->getPositions());
+                foreach ($positions as $position) {
                     $lines[(int)$position][] = $item;
                 }
             }
