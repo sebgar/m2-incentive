@@ -70,10 +70,10 @@ class Push extends AbstractDb
     public function packData(AbstractModel $object)
     {
         if (is_array($object->getCategoryIds())) {
-            $object->setCategoryIds(implode(',', (string)$object->getCategoryIds()));
+            $object->setCategoryIds(implode(',', $object->getCategoryIds()));
         }
         if (is_array($object->getCategoryIdsExcluded())) {
-            $object->setCategoryIdsExcluded(implode(',', (string)$object->getCategoryIdsExcluded()));
+            $object->setCategoryIdsExcluded(implode(',', $object->getCategoryIdsExcluded()));
         }
     }
 
