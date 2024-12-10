@@ -48,10 +48,10 @@ class Push extends AbstractDb
     public function unpackData(AbstractModel $object)
     {
         if (is_string($object->getCategoryIds())) {
-            $object->setCategoryIds(explode(',', $object->getCategoryIds()));
+            $object->setCategoryIds(explode(',', (string)$object->getCategoryIds()));
         }
         if (is_string($object->getCategoryIdsExcluded())) {
-            $object->setCategoryIdsExcluded(explode(',', $object->getCategoryIdsExcluded()));
+            $object->setCategoryIdsExcluded(explode(',', (string)$object->getCategoryIdsExcluded()));
         }
     }
 
@@ -70,10 +70,10 @@ class Push extends AbstractDb
     public function packData(AbstractModel $object)
     {
         if (is_array($object->getCategoryIds())) {
-            $object->setCategoryIds(implode(',', $object->getCategoryIds()));
+            $object->setCategoryIds(implode(',', (string)$object->getCategoryIds()));
         }
         if (is_array($object->getCategoryIdsExcluded())) {
-            $object->setCategoryIdsExcluded(implode(',', $object->getCategoryIdsExcluded()));
+            $object->setCategoryIdsExcluded(implode(',', (string)$object->getCategoryIdsExcluded()));
         }
     }
 

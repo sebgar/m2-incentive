@@ -60,6 +60,7 @@ class Collection extends AbstractCollection
 
     public function addCategoriesExcludedFilter(array $categoryIds)
     {
+        $expr = ['category_ids_excluded IS NULL'];
         foreach ($categoryIds as $categoryId) {
             $expr[] = 'NOT FIND_IN_SET('.$categoryId.', category_ids_excluded)';
         }
